@@ -2,7 +2,7 @@
 // OPTIONAL: if you're feeling adventurous, try to make this data an export from a different module, and import it here.
 // You can read about ES6 modules here: https://exploringjs.com/es6/ch_modules.html#sec_basics-of-es6-modules
 
-import data from 'article-module'
+import data from '../components/article-module'
 
 function articleMaker ({ title, date, firstParagraph, secondParagraph, thirdParagraph }){
   const article = document.createElement(`div`);
