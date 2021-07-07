@@ -86,8 +86,49 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: `Romy is the Coolest Web Dev`,
+    date: `July 7th, 2021`,
+    firstParagraph: `No joke, Lorem ipsum blah blah blah.`,
+    secondParagraph: `Really getting the hang of all this stuff.`,
+    thirdParagraph: `This is so much freaking fun, wheeeeeeeeeee!`
   }
 ];
+
+function articleMaker ({ title, date, firstParagraph, secondParagraph, thirdParagraph }){
+  const article = document.createElement(`div`);
+  const articleTitle = document.createElement(`h2`);
+  const articleDate = document.createElement(`p`);
+  const p1 = document.createElement(`p`);
+  const p2 = document.createElement(`p`);
+  const p3 = document.createElement(`p`);
+  const expand = document.createElement(`span`);
+
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(p1);
+  article.appendChild(p2);
+  article.appendChild(p3);
+  article.appendChild(expand);
+
+  article.classList.add(`article`);
+  articleDate.classList.add(`date`);
+  expand.classList.add(`expandButton`)
+
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  p1.textContent = firstParagraph;
+  p2.textContent = secondParagraph;
+  p3.textContent = thirdParagraph;
+  expand.textContent = `+`
+
+  expand.addEventListener(`click`, () => {
+    article.classList.toggle(`article-open`)
+  })
+
+  return article
+}
 
 /*
   Step 1: Write a component called 'articleMaker' to create an article.
@@ -114,3 +155,6 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+const articleElements = data.map(datum => articleMaker(datum));
+articleElements.forEach(elem => document.querySelector(`.articles`).appendChild(elem))
